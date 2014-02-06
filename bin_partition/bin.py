@@ -25,11 +25,8 @@ class Bin:
             for i in range(self.numRows):
                 column.append([])
             self.columns.append(column)
-        #print "BIN Num row,cols:", self.numColumns, self.numRows, "width,height:", fullWidth, fullHeight
-        #print "LEN:", len(self.columns), len(self.columns[0])
-        #print "colWidth, rowWidth:", self.columnWidth, self.rowHeight
 
-    def getString(self):
+    def get_string(self):
         result = ""
         for i in range(self.numRows):
             for j in range(self.numColumns):
@@ -37,7 +34,6 @@ class Bin:
             result += "\n"
         return result
 
-    #def _getStartColRowEndColRowRange(self, rect):
     def _get_col_row_range(self, rect):
         """Returns start_col, start_row, end_col, end_row."""
 
@@ -89,7 +85,8 @@ class Bin:
                 max(0, ranges[3]))
 
     def insert(self, rect, obj):
-        #print "Bin.insert:", rect, obj
+        """Insert obj with region rect into the Bin structure."""
+
         if obj in self.rects.keys():
             raise Exception("remove before inserting again")
         #startCol = int(float(rect.x) / self.columnWidth)
@@ -136,7 +133,7 @@ class Bin:
         del self.rects[obj]
         self.insert(new_rect, obj)
 
-    def deleteWithRect(self, obj, rect):
+    def delete_with_rect(self, obj, rect):
         #startCol = int(rect.x / self.columnWidth)
         #startRow = int(rect.y / self.rowHeight)
         ##endCol = int((rect.x+rect.width) / self.columnWidth)
@@ -177,7 +174,7 @@ class Bin:
                     # next line works, but make more general
                     #if rect.intercepts(self.rects[obj]):
                     #print "COLLIDERECTS:", rect, self.rects[obj]
-                    if self.collideRects(rect,self.rects[obj]):
+                    if self.collide_rects(rect,self.rects[obj]):
                         if (obj,self.rects[obj]) not in returnObjectsRects:
                             returnObjectsRects.append( (obj,self.rects[obj]) )
 
@@ -225,15 +222,15 @@ class Bin:
         # Convert set to list and return
         return list(objs)
 
-    def collideRectsPygame(self, rect1, rect2):
+    def collide_rects_pygame(self, rect1, rect2):
         return rect1.colliderect(rect2)
 
-    def collideRectsE(self, rect1, rect2):
+    def collide_rects_e(self, rect1, rect2):
         return rect1.intercepts(rect2)
 
-    collideRects = collideRectsE
+    collide_rects = collide_rects_e
 
 
-def BinUsePygame():
-    Bin.collideRects = Bin.collideRectsPygame
+def bin_use_pygame():
+    Bin.collide_rects = Bin.collide_rects_pygame
 

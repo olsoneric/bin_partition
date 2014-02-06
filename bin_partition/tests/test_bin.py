@@ -16,7 +16,7 @@
 
 import unittest
 
-from binpartition.binpartition import Bin
+from bin_partition.bin import Bin
 from pedemath.rect import Rect
 
 
