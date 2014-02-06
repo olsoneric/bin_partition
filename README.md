@@ -1,7 +1,7 @@
 bin_partition
 =============
 
-STATUS: OLD library that will be cleaned up.  
+STATUS: OLD library that will be cleaned up.  (function names will change)  
 TODO: pep8 fixes, more tests, docstrings, setup.py.
 
 A simple structure to speed up 2D spatial queries.
